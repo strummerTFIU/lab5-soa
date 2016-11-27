@@ -1,0 +1,54 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot' 
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.webjars:jquery:2.1.3")
+    compile("org.webjars:bootstrap:3.3.1")
+    compile("org.webjars:mustachejs:0.8.2")
+    compile("org.apache.camel:camel-spring-boot:2.16.1")
+    compile("org.apache.camel:camel-twitter:2.16.1")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task zip(type:Zip) {
+	from '.'
+	into '.'
+	exclude '.classpath'
+	exclude '.project'
+	exclude '.gradle'
+	exclude '.settings'
+	exclude 'bin'
+	exclude 'build' 
+	filter { line -> line.startsWith('twitter.consumerKey=') ? 'twitter.consumerKey=<<ask Twitter for a key>>' : line }
+	filter { line -> line.startsWith('twitter.consumerSecret=') ? 'twitter.consumerSecret=<<ask Twitter for a key>>' : line }
+	filter { line -> line.startsWith('twitter.accessToken=') ? 'twitter.accessToken=<<ask Twitter for a key>>' : line }
+	filter { line -> line.startsWith('twitter.accessTokenSecret=') ? 'twitter.accessTokenSecret=<<ask Twitter for a key>>' : line }
+}
