@@ -32,4 +32,4 @@ NIA    | User name | Repo | Improvement | Score
 534521 | SANZ VIDAL, AITOR 
 618051 | TOLON MARTÍN, CARLOS JAVIER 
 643821 | VELA GARCÍA, JUAN 
-679609 | VIÑUALES SÁNCHEZ, PABLO 
+679609 | VIÑUALES SÁNCHEZ, PABLO | [test repo](https://github.com/strummerTFIU/lab5-soa/tree/test)
